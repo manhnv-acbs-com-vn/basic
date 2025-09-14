@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <link rel="stylesheet" href="/lib/modal.css">
+</head>
+
+<body>
+
+    <!---
+
+Chúng ta sẽ bắt đầu từ button bật modal. 
+Hình thức xây dựng theo để tái sử dụng mã JavaScript, (ko tai su dung ma Js
+chúng ta sẽ không viết một đoạn mã cho duy nhất một Modal
+
+có 2 loại thuộc tính : 
+   - Thuộc tính html  quy định 
+   - thuộc do lập trình viên đặt ra 
+
+data-trigger=modal : là thuộc tính nhân biết html của modal
+data-target : trỏ đến class và id đến modal
+aria-open :  hiển thị modal nếu là true
+
+
+-->
+    <button class="btn" data-trigger="modal" data-target=".modal-1" aria-open="true"> modal-1</button>
+    <button  class="btn"  data-trigger="modal" data-target=".modal-2" aria-open="true"> modal-2</button>
+    <button class="btn" data-trigger="chuyen-dep-trao" data-target=".modal-1" aria-open="true"> </button>
+
+    <div class="modal  modal-1">
+        <div class="modal__backdrop"></div>
+        <div class="modal__content">
+            <div class="modal__header">
+                <h1>Header modal</h1>
+            </div>
+            <div class="modal__main">
+                <p>modal 1</p>
+            </div>
+            <div class="modal__footer">
+                <div class="modal__cancel" data-cancel="modal">Cancel</div>
+            </div>
+        </div>
+    </div>
+    <div class="modal  modal-2">
+        <div class="modal__backdrop"></div>
+        <div class="modal__content">
+            <div class="modal__header">
+                <h1>Header modal</h1>
+            </div>
+            <div class="modal__main">
+                <p>modal 2</p>
+            </div>
+            <div class="modal__footer">
+                <div class="modal__cancel" data-cancel="modal">Cancel</div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="/lib/modal.js"> </script>
+
+</html>

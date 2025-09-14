@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            line-height: 1.5;
+        }
+
+        .modal {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            visibility: hidden;
+            opacity: 0;
+            transition: all 300ms linear;
+        }
+
+        .modal__backdrop {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .modal__content {
+            transition: all 300ms ease-in-out;
+            min-width: 30%;
+            margin: auto;
+            z-index: 10;
+            position: absolute;
+            top: -100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 15px 30px;
+            border-radius: 5px;
+        }
+
+        .modal__header {
+            border-bottom: 1px solid gray;
+            margin-bottom: 15px;
+        }
+
+        .modal__main {
+            margin-bottom: 15px;
+        }
+
+        .modal__footer {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .modal__footer>* {
+            margin-left: 15px;
+            cursor: pointer;
+        }
+
+        .modal--active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal--active .modal__content {
+            top: 25%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!---
+
+Chúng ta sẽ bắt đầu từ button bật modal. 
+Hình thức xây dựng theo để tái sử dụng mã JavaScript, (ko tai su dung ma Js
+chúng ta sẽ không viết một đoạn mã cho duy nhất một Modal
+
+có 2 loại thuộc tính : 
+   - Thuộc tính html  quy định 
+   - thuộc do lập trình viên đặt ra 
+
+data-trigger=modal : là thuộc tính nhân biết html của modal
+data-target : trỏ đến class và id đến modal
+aria-open :  hiển thị modal nếu là true
+
+
+-->
+    <button class="btn" data-trigger="modal" data-target=".modal-1" aria-open="true"> modal-1</button>
+    <button  class="btn"  data-trigger="modal" data-target=".modal-2" aria-open="true"> modal-2</button>
+    <button class="btn" data-trigger="chuyen-dep-trao" data-target=".modal-1" aria-open="true"> </button>
+
+    <div class="modal  modal-1">
+        <div class="modal__backdrop"></div>
+        <div class="modal__content">
+            <div class="modal__header">
+                <h1>Header modal</h1>
+            </div>
+            <div class="modal__main">
+                <p>modal 1</p>
+            </div>
+            <div class="modal__footer">
+                <div class="modal__cancel" data-cancel="modal">Cancel</div>
+            </div>
+        </div>
+    </div>
+    <div class="modal  modal-2">
+        <div class="modal__backdrop"></div>
+        <div class="modal__content">
+            <div class="modal__header">
+                <h1>Header modal</h1>
+            </div>
+            <div class="modal__main">
+                <p>modal 2</p>
+            </div>
+            <div class="modal__footer">
+                <div class="modal__cancel" data-cancel="modal">Cancel</div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+   function modal () {
+    const buttonModals = document.querySelectorAll("[data-trigger=modal]");
+    buttonModals.forEach(item => {
+        //  lấy giá trị  của data-target 
+        const itemTarget = item.getAttribute("data-target");
+        //  để trỏ đến id hoặc  class
+        const modal = document.querySelector(itemTarget);
+
+        //  sau đó nạp sự kiện của button 
+        item.addEventListener("click", function () {
+            modal.classList.add("modal--active")
+        })
+
+        modal.querySelector("[data-cancel=modal]").addEventListener("click",function(){
+            modal.classList.remove("modal--active")
+        })
+
+        //
+
+
+    })
+   }
+
+   modal()
+   
+</script>
+
+</html>
